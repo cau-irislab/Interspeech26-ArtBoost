@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Search Engine -->
+  <meta name="description" content="ArtBoost: Synthetic Articulatory Data Augmentation for Acoustic-to-Articulatory Inversion. A data augmentation strategy that repurposes large-scale speech-mesh data as pseudo articulatory supervision to improve AAI under limited EMA data.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="ArtBoost: Synthetic Articulatory Data Augmentation for Acoustic-to-Articulatory Inversion" />
+  <meta property="og:description" content="ArtBoost extracts pseudo articulatory trajectories from visible facial anchors in speech-mesh data and uses them to pre-train AAI models before fine-tuning on real EMA data, improving PCC and RMSE." />
+  <meta property="og:url" content="https://cau-irislab.github.io/Interspeech26-ArtBoost/"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimensions are 1200X630-->
+  <meta property="og:image" content="static/images/fig1_intro.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <meta name="twitter:title" content="ArtBoost: Synthetic Articulatory Data Augmentation for Acoustic-to-Articulatory Inversion">
+  <meta name="twitter:description" content="Repurposing large-scale speech-mesh data as pseudo articulatory supervision to improve acoustic-to-articulatory inversion.">
+  <meta name="twitter:image" content="static/images/fig1_intro.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="acoustic-to-articulatory inversion, AAI, speech inversion, data augmentation, EMA, electromagnetic articulography, speech-mesh, articulatory trajectory, Interspeech 2026">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>ArtBoost: Synthetic Articulatory Data Augmentation for Acoustic-to-Articulatory Inversion</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">ArtBoost: Synthetic Articulatory Data Augmentation for Acoustic-to-Articulatory Inversion</h1>
+            <h2 class="title is-3">Interspeech 2026</h2>
+                  <div class="is-size-5 publication-authors">
+                    <!-- Paper authors -->
+                    <span class="author-block">
+                      <a href="#" target="_blank">Hyung Kyu Kim</a><sup>1</sup>,</span>
+                    <span class="author-block">
+                      <a href="#" target="_blank">Byungchan Hwang</a><sup>2</sup>,</span>
+                    <span class="author-block">
+                      <a href="#" target="_blank">Hak Gu Kim</a><sup>2</sup>
+                    </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="eql-cntrb"><sup>1</sup>Department of Imaging Science and Arts, Chung-Ang University, South Korea</span>
+                    <span class="eql-cntrb"><br><sup>2</sup>Department of Metaverse Convergence, Chung-Ang University, South Korea</span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                      <!-- Paper PDF link. To enable, replace href="#" with href="static/pdfs/ArtBoost.pdf" -->
+                      <span class="link-block">
+                        <a href="#" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- arXiv abstract Link -->
+                    <span class="link-block">
+                      <a href="#" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="#" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser image -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <figure class="image">
+        <img src="static/images/fig1_intro.png" alt="Overview of ArtBoost: (a) large-scale synthetic articulatory augmentation from audio-aligned 3D facial mesh sequences, and (b) training the AAI model using the augmented articulatory supervision.">
+      </figure>
+      <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
+        <strong>ArtBoost</strong> repurposes large-scale speech&ndash;mesh data into pseudo articulatory supervision,
+        boosting acoustic-to-articulatory inversion under limited EMA data &mdash; no extra sensor recordings required.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser image -->
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent acoustic-to-articulatory inversion (AAI) models rely on electromagnetic articulography (EMA)
+            data, which are costly and limited in scale. To address this limitation, we propose <strong><em>ArtBoost</em></strong>,
+            a novel data augmentation strategy that leverages large-scale speech&ndash;mesh datasets originally
+            developed for speech-driven 3D facial animation to improve AAI under limited EMA supervision.
+            <em>ArtBoost</em> extracts pseudo articulatory trajectories from visible facial anchors and uses them
+            for pre-training before fine-tuning on real EMA data. Experiments show consistent improvements in PCC
+            and RMSE. Trajectory analyses confirm that the pseudo articulatory signals reflect physically meaningful
+            visible articulatory dynamics. Additional evaluations across different AAI architectures demonstrate
+            stable performance gains, indicating that <em>ArtBoost</em> can be integrated into diverse AAI models.
+            These results suggest that speech&ndash;mesh data provide an effective and scalable source of
+            articulatory supervision for AAI.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Proposed Method -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Proposed Method</h2>
+
+        <figure class="image" style="margin-bottom: 2rem;">
+          <img src="static/images/fig2_method.png" alt="The ArtBoost pipeline: ASR-guided segmentation produces utterance-level clips, facial anchors are tracked to obtain articulatory trajectories, and the pseudo labels are used to pre-train the AAI model prior to EMA adaptation.">
+        </figure>
+        <div class="content has-text-justified">
+          <p>
+            <em>ArtBoost</em> turns abundant speech&ndash;mesh recordings into pseudo articulatory supervision through
+            three steps, expanding the effective training space without any additional sensor-based recordings.
+          </p>
+          <p>
+            <strong>1) ASR-guided Utterance Segmentation.</strong>
+            Speech&ndash;mesh datasets consist of long, continuous video-level recordings, whereas EMA corpora are
+            organized at the utterance level. We run automatic speech recognition to obtain word-level timestamps and
+            group consecutive words into utterance candidates &mdash; splitting when the inter-word silence exceeds a
+            threshold or a maximum word count is reached &mdash; producing synchronized utterance-level speech&ndash;mesh pairs.
+          </p>
+          <p>
+            <strong>2) Pseudo Articulatory Trajectory Extraction.</strong>
+            For each utterance clip, we track visible facial anchors corresponding to articulators &mdash; the upper lip (UL),
+            lower lip (LL), and lower incisor (LI) &mdash; where each anchor is the mean position of a predefined vertex region
+            to reduce mesh noise. Following the conventional EMA representation, we retain the protrusion (z) and mouth-opening (y)
+            motion components, assemble a 12-channel target (zeroing channels without a visible anchor), and resample to the
+            target articulatory frame rate.
+          </p>
+          <p>
+            <strong>3) Pre-training then Fine-tuning.</strong>
+            We first pre-train the AAI model on the pseudo trajectories using a <em>channel-masked</em> loss that supervises
+            only the visible UL/LL/LI channels. We then fine-tune on real EMA trajectories with full-channel supervision.
+            This lets the model learn a strong prior of visible articulatory motion from large-scale pseudo data before
+            refining it with complete ground-truth EMA signals.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Proposed Method -->
+
+
+<!-- Quantitative Results -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Quantitative Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            Under leave-one-speaker-out (unseen-speaker) evaluation, <em>ArtBoost</em> augmentation consistently
+            improves both the Pearson correlation coefficient (PCC&nbsp;&uarr;) and root mean square error (RMSE&nbsp;&darr;)
+            on two AAI architectures and two benchmarks. Gains are most pronounced on USC-TIMIT, where ground-truth EMA
+            data is scarcest &mdash; indicating that <em>ArtBoost</em> is especially effective under limited supervision.
+          </p>
+        </div>
+
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered">
+            <thead>
+              <tr>
+                <th rowspan="2" class="has-text-centered" style="vertical-align: middle;">Model</th>
+                <th rowspan="2" class="has-text-centered" style="vertical-align: middle;">Dataset</th>
+                <th colspan="2" class="has-text-centered">PCC (&uarr;)</th>
+                <th colspan="2" class="has-text-centered">RMSE (&darr;)</th>
+              </tr>
+              <tr>
+                <th class="has-text-centered">w/o</th>
+                <th class="has-text-centered">w/ ArtBoost</th>
+                <th class="has-text-centered">w/o</th>
+                <th class="has-text-centered">w/ ArtBoost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2" style="vertical-align: middle;">SSL-AAI</td>
+                <td>HPRC</td>
+                <td>0.678</td><td><strong>0.698</strong></td>
+                <td>0.736</td><td><strong>0.717</strong></td>
+              </tr>
+              <tr>
+                <td>USC-TIMIT</td>
+                <td>0.351</td><td><strong>0.510</strong></td>
+                <td>0.864</td><td><strong>0.792</strong></td>
+              </tr>
+              <tr>
+                <td rowspan="2" style="vertical-align: middle;">SI-AAI</td>
+                <td>HPRC</td>
+                <td>0.717</td><td><strong>0.732</strong></td>
+                <td>0.706</td><td><strong>0.689</strong></td>
+              </tr>
+              <tr>
+                <td>USC-TIMIT</td>
+                <td>0.488</td><td><strong>0.593</strong></td>
+                <td>0.917</td><td><strong>0.817</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="is-size-7 has-text-grey" style="margin-bottom: 2rem;">
+          Overall results (mean over unseen speakers). Bold marks the better score within each model/dataset.
+        </p>
+
+        <figure class="image" style="margin-bottom: 1rem;">
+          <img src="static/images/fig3_quantitative.png" alt="Articulator-wise PCC across EMA trajectories, comparing models with and without ArtBoost augmentation.">
+        </figure>
+        <div class="content has-text-justified">
+          <p>
+            <strong>Articulator-wise PCC.</strong> Although pseudo trajectories are built only for the visible anchors
+            (UL/LL/LI), <em>ArtBoost</em> improves prediction across multiple articulators &mdash; showing that the
+            augmentation enhances the learned articulatory representation beyond the directly supervised channels.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Quantitative Results -->
+
+
+<!-- Articulatory Trajectory Comparison -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Articulatory Trajectory Comparison</h2>
+
+        <figure class="image" style="margin-bottom: 2rem;">
+          <img src="static/images/fig4_qualitative.png" alt="Qualitative comparison of predicted and ground-truth EMA trajectories on HPRC across protrusion and aperture channels for multiple articulators.">
+        </figure>
+        <div class="content has-text-justified">
+          <p>
+            We compare predicted and ground-truth EMA trajectories on HPRC. Across the protrusion (&ldquo;-X&rdquo;) and
+            aperture (&ldquo;-Y&rdquo;) channels for multiple articulators, the predicted trajectories follow the overall
+            temporal trends of the ground truth, capturing peak movements and transition patterns. The model produces
+            temporally coherent and physically plausible articulatory motion consistent with expected speech dynamics.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Articulatory Trajectory Comparison -->
+
+
+<!-- Pseudo Trajectory Analysis -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Pseudo Articulatory Trajectory Analysis</h2>
+
+        <figure class="image" style="margin-bottom: 2rem;">
+          <img src="static/images/fig6_analysis.png" alt="Visualization of pseudo trajectories (LI/UL/LL) extracted from speech-mesh data alongside the corresponding 3D facial mesh renderings.">
+        </figure>
+        <div class="content has-text-justified">
+          <p>
+            This visualization shows how pseudo articulatory trajectories are derived from speech&ndash;mesh data and how
+            they correspond to visible facial motion: synchronized audio, the pseudo LI/UL/LL trajectory signals, and the
+            3D facial mesh frames. During bilabial closure, reduced lip opening appears in the Y-direction components, while
+            protrusion-related motion appears in the X-direction. The temporal alignment between mesh deformation and
+            trajectory variation confirms that the mesh-derived signals encode physically interpretable articulatory
+            dynamics &mdash; supporting their use as training targets in the absence of direct EMA measurements.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Pseudo Trajectory Analysis -->
+
+
+<!-- BibTeX citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{kim2026artboost,
+  author    = {Kim, Hyung Kyu and Hwang, Byungchan and Kim, Hak Gu},
+  title     = {ArtBoost: Synthetic Articulatory Data Augmentation for Acoustic-to-Articulatory Inversion},
+  booktitle = {Proc. Interspeech},
+  year      = {2026}
+}</code></pre>
+    </div>
+</section>
+<!-- End BibTeX citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+  </html>
