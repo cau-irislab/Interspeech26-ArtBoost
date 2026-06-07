@@ -111,21 +111,26 @@
 </section>
 
 
-<!-- Teaser image -->
+<!-- Teaser video -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <figure class="image">
-        <img src="static/images/fig1_intro.png" alt="Overview of ArtBoost: (a) large-scale synthetic articulatory augmentation from audio-aligned 3D facial mesh sequences, and (b) training the AAI model using the augmented articulatory supervision.">
-      </figure>
-      <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
-        <strong>ArtBoost</strong> repurposes large-scale speech&ndash;mesh data into pseudo articulatory supervision,
-        boosting acoustic-to-articulatory inversion under limited EMA data &mdash; no extra sensor recordings required.
+      <h2 class="subtitle has-text-centered" style="margin-bottom: 1.25rem;">
+        <strong>Extracting Pseudo Articulatory Trajectories from 3D Facial Mesh Sequences</strong>
       </h2>
+      <video id="teaser-video" controls playsinline width="100%"
+             poster="static/images/teaser_poster.jpg">
+        <source src="static/videos/supp_video_v02.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p class="has-text-centered is-size-6 has-text-grey" style="margin-top: 0.75rem;">
+        We track visible facial anchors &mdash; upper lip (UL), lower lip (LL), and lower incisor (LI) &mdash;
+        on audio-aligned 3D meshes to obtain pseudo articulatory trajectories that supervise acoustic-to-articulatory inversion.
+      </p>
     </div>
   </div>
 </section>
-<!-- End teaser image -->
+<!-- End teaser video -->
 
 
 <!-- Paper abstract -->
@@ -134,6 +139,10 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
+
+        <figure class="image" style="margin-bottom: 2rem;">
+          <img src="static/images/fig1_intro.png" alt="Overview of ArtBoost: (a) large-scale synthetic articulatory augmentation from audio-aligned 3D facial mesh sequences, and (b) training the AAI model using the augmented articulatory supervision.">
+        </figure>
         <div class="content has-text-justified">
           <p>
             Recent acoustic-to-articulatory inversion (AAI) models rely on electromagnetic articulography (EMA)
