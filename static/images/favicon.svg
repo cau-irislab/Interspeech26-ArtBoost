@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10245c"/>
+      <stop offset="1" stop-color="#1b3a8f"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <!-- UL trajectory -->
+  <path d="M8 22 C 16 16, 24 28, 32 22 S 48 14, 56 20"
+        fill="none" stroke="#7fd4ff" stroke-width="4" stroke-linecap="round"/>
+  <!-- LL trajectory -->
+  <path d="M8 36 C 16 30, 22 44, 32 38 S 48 30, 56 36"
+        fill="none" stroke="#ffd166" stroke-width="4" stroke-linecap="round"/>
+  <!-- LI trajectory -->
+  <path d="M8 50 C 16 44, 24 56, 32 50 S 48 44, 56 50"
+        fill="none" stroke="#ff7e6b" stroke-width="4" stroke-linecap="round"/>
+  <!-- anchor dots -->
+  <circle cx="22" cy="22.5" r="4.5" fill="#ffffff"/>
+  <circle cx="34" cy="38.5" r="4.5" fill="#ffffff"/>
+  <circle cx="44" cy="48" r="4.5" fill="#ffffff"/>
+</svg>
