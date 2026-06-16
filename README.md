@@ -7,7 +7,7 @@
 <sup>1</sup> Department of Imaging Science and Arts, Chung-Ang University, South Korea
 <sup>2</sup> Department of Metaverse Convergence, Chung-Ang University, South Korea
 
-📄 [Project Page](https://cau-irislab.github.io/Interspeech26-ArtBoost/) | 📝 Paper (coming soon) | 💻 Code (coming soon)
+📄 [Project Page](https://cau-irislab.github.io/Interspeech26-ArtBoost/) | 📝 [Paper](https://arxiv.org/abs/2606.16327) | 💻 Code (coming soon)
 
 ## Overview
 
