@@ -2,7 +2,7 @@
 
 > 🎉 **Accepted at Interspeech 2026!**
 
-[Hyung Kyu Kim](https://github.com/kimhyungkyu-1208)<sup>1</sup>, Byungchan Hwang<sup>2</sup>, Hak Gu Kim<sup>2</sup>
+[Hyung Kyu Kim](https://github.com/kimhyungkyu-1208)<sup>1</sup>, Byungchan Hwang<sup>2</sup>, [Hak Gu Kim](https://www.irislab.cau.ac.kr)<sup>2</sup>
 
 <sup>1</sup> Department of Imaging Science and Arts, Chung-Ang University, South Korea
 <sup>2</sup> Department of Metaverse Convergence, Chung-Ang University, South Korea
