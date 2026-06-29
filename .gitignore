@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Paper LaTeX sources (not for publishing)
+_Interspeech_26__hkkim_AAI/
+
+# Previous project pages (local reference only)
+previous_pages/
